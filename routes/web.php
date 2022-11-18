@@ -24,6 +24,7 @@ Route::get('/', function () {
 });
 
 Route::get('/users', function () {
+    sleep(5);
     return Inertia::render("Users");
 });
 
