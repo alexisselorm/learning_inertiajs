@@ -8,13 +8,7 @@
 
     </Layout>
 </template>
-<script lang="ts">
-import { defineComponent } from 'vue';
+<script setup>
 import Layout from "../Shared/Layout.vue"
-export default defineComponent({
-    name: "Home",
-    components: {
-        Layout
-    },
-});
+    ;
 </script>

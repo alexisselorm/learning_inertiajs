@@ -10,20 +10,11 @@
     </Layout>
 
 </template>
-<script lang="ts">
+<script setup >
 import Layout from "../Shared/Layout.vue";
-import { defineComponent } from "vue";
 import { Link } from "@inertiajs/inertia-vue3";
-export default defineComponent({
-    name: "Users",
-    components: {
-        Layout,
-        Link
-    },
-    props: {
-        time: {
-            type: String
-        }
-    }
-});
+
+defineProps({
+    time: String
+})
 </script>
