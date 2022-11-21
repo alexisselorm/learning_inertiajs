@@ -2,8 +2,12 @@
 
     <Head title="Users" />
 
-    <h1 class="mb-2 font-bold underline">Users</h1>
+    <div class="flex mb-2 justify-between">
 
+        <h1 class=" font-bold underline">Users</h1>
+
+        <input type="text" placeholder="Search..." class="border px-1 rounded-lg" v-model="search" />
+    </div>
 
     <div class="-mx-4 sm:-mx-8 px-4 sm:px-8 py-4 overflow-x-auto">
         <div class="inline-block min-w-full shadow rounded-lg overflow-hidden">
@@ -39,10 +43,18 @@
     <Pagination :links="users.links" class="mt-6" />
 </template>
 <script setup>
+import { ref, watch } from 'vue';
 import { Link } from '@inertiajs/inertia-vue3';
-import Pagination from '../Shared/Pagination.vue';
-defineProps({
-    users: Object
+import Pagination from '../../Shared/Pagination.vue';
+import { Inertia } from '@inertiajs/inertia'
+let props = defineProps({
+    users: Object,
+    filters: Object
 });
+console.log(props.filters)
 
+let search = ref(props.filters.search)
+watch(search, value => {
+    Inertia.get('/users', { search: value }, { preserveState: true, replace: true })
+})
 </script>
