@@ -25,7 +25,7 @@ createInertiaApp({
       .component("Head",Head)
       .mount(el)
   },
-  title: (title)=>"MyApp -" + title,
+  title: (title)=>"MyApp - " + title,
 })
 
 // Default Layouts
