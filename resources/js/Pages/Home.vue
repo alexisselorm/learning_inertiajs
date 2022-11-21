@@ -4,7 +4,4 @@
     <p>In this series, we will use the following frameworks:</p>
 
     <!-- end of slot -->
-
-
 </template>
-

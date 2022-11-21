@@ -10,23 +10,11 @@
 
     <section class="p-6">
         <div class="max-w-3xl mx-auto">
-
-            <iframe src="https://player.simplecast.com/fd0bd2ba-c553-466c-a060-b144797ce369?dark=false" frameborder="no"
-                seamless width="100%" scrolling="no" class="mb-6"></iframe>
-
             <slot />
         </div>
     </section>
 </template>
 
-<script>
+<script setup>
 import Nav from "./Nav.vue"
-
-export default {
-    name: "Layout",
-    components: {
-        Nav
-    },
-
-}
 </script>

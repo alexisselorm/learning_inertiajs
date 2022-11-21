@@ -9,8 +9,8 @@
 
 </template>
 <script >
-
 export default {
+
     props: {
         time: String
     }
