@@ -4,6 +4,7 @@ import { createInertiaApp } from '@inertiajs/inertia-vue3'
 import { InertiaProgress } from '@inertiajs/progress'
 import {resolvePageComponent} from 'laravel-vite-plugin/inertia-helpers'
 import Layout from '../js/Shared/Layout.vue'
+import { Head } from '@inertiajs/inertia-vue3';
 
 
 InertiaProgress.init({
@@ -22,8 +23,10 @@ createInertiaApp({
   setup({ el, App, props, plugin }) {
     createApp({ render: () => h(App, props) })
       .use(plugin)
+      .component("Head",Head)
       .mount(el)
   },
+  title: (title)=>"MyApp -" + title,
 })
 
 // Default Layouts

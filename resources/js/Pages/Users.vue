@@ -1,5 +1,7 @@
 <template>
 
+    <Head title="Users" />
+
     <h1>Users</h1>
 
     <div class="mt-[400px]">
@@ -8,11 +10,10 @@
     <Link href="/users" class="text-blue-500 hover:underline" preserve-scroll>Refresh</Link>
 
 </template>
-<script >
-export default {
+<script setup>
+import { Link } from "@inertiajs/inertia-vue3"
+defineProps({
+    time: String
+});
 
-    props: {
-        time: String
-    }
-}
 </script>
