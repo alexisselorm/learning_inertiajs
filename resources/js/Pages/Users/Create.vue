@@ -25,14 +25,15 @@
             <div v-if="errors.password" v-text="errors.password" class="text-red-500 text-xs mt-1"></div>
         </div>
         <div class="mb-6">
-            <button type="submit" class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500">Submit</button>
+            <button type="submit" class="bg-blue-400 text-white rounded py-2 px-4 hover:bg-blue-500"
+                :disabled="processing">Submit</button>
         </div>
 
     </form>
 </template>
 
 <script setup>
-import { reactive } from "vue";
+import { reactive, ref } from "vue";
 import { Inertia } from "@inertiajs/inertia"
 
 // You can choose to use $page.props.errors.<name_of_field> instead of this 'errors' props.
@@ -45,7 +46,14 @@ let form = reactive({
     email: '',
     password: '',
 });
+// This processing reactive variable keeps track of whether the form has been submitted. If it has, it disables the submit button
+let processing = ref(false);
 let submit = () => {
-    Inertia.post('/users', form);
+    Inertia.post('/users', form,
+        //The third argument to inertia.post. These provide helper functions to dynamically toggle the state of 'processing' on the submit button
+        {
+            onStart: () => { processing.value = true },
+            onFinish: () => { processing.value = false },
+        });
 }
 </script>
