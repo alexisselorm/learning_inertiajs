@@ -48,7 +48,9 @@
 import { ref, watch } from 'vue';
 import { Link } from '@inertiajs/inertia-vue3';
 import Pagination from '../../Shared/Pagination.vue';
-import { Inertia } from '@inertiajs/inertia'
+import { Inertia } from '@inertiajs/inertia';
+import throttle from 'lodash/throttle';
+
 let props = defineProps({
     users: Object,
     filters: Object
@@ -56,7 +58,7 @@ let props = defineProps({
 console.log(props.filters.search)
 
 let search = ref(props.filters.search)
-watch(search, value => {
+watch(search, throttle(function (value) {
     Inertia.get('/users', { search: value }, { preserveState: true, replace: true })
-})
+}, 500))
 </script>
