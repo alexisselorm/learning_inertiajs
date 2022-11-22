@@ -4,8 +4,10 @@
 
     <div class="flex mb-2 justify-between">
 
-        <h1 class=" font-bold underline">Users</h1>
-
+        <div class="flex items-center">
+            <h1 class=" font-bold underline">Users</h1>
+            <Link href="/users/create" class="text-blue-500 text-sm ml-3">New User</Link>
+        </div>
         <input type="text" placeholder="Search..." class="border px-1 rounded-lg" v-model="search" />
     </div>
 
