@@ -14,7 +14,10 @@ InertiaProgress.init({
 createInertiaApp({
   resolve:async name =>{
     let page = (await resolvePageComponent(`./Pages/${name}.vue`,import.meta.glob("./Pages/**/*.vue"))).default
-    page.layout ??=Layout
+    if(page.layout === undefined){
+
+        page.layout =Layout
+    }
     // console.log(page);
     return page;
 }
