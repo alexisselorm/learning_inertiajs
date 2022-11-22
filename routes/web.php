@@ -45,6 +45,20 @@ Route::get('/users/create', function(){
    return Inertia::render("Users/Create");
 });
 
+Route::post('/users', function(){
+    // Validate the request
+    $user=request()->validate([
+        'name' =>'required|max:255',
+        'email' =>'required|email|max:255|unique:users',
+        'password' =>'required|min:6',
+    ]);
+    // Create the user
+    User::create($user);
+
+    // Redirect somewhere else. Even though we're working with a javascript frontend, we do not need to send a json response. Inertia understands our redirect method and will redirect correctly.
+    return redirect('/users');
+
+ });
 
 Route::get('/settings', function () {
     return Inertia::render("Settings");
