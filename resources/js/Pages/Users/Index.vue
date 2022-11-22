@@ -6,7 +6,7 @@
 
         <div class="flex items-center">
             <h1 class=" font-bold underline">Users</h1>
-            <Link href="/users/create" class="text-blue-500 text-sm ml-3">New User</Link>
+            <Link v-if="can.createUser" href="/users/create" class="text-blue-500 text-sm ml-3">New User</Link>
         </div>
         <input type="text" placeholder="Search..." class="border px-1 rounded-lg" v-model="search" />
     </div>
@@ -27,7 +27,7 @@
                             </div>
                         </td>
                         <td class="px-5 py-5 border-b border-gray-200 bg-white text-sm">
-                            <Link :href="`/users/${user.id}/edit`"
+                            <Link :href="`/users/${user.id}/edit`" v-if="user.can.edit"
                                 class="relative inline-block px-3 py-1 font-semibold text-green-900 leading-tight">
                             <span aria-hidden class="absolute inset-0 bg-green-200 opacity-50 rounded-full"></span>
                             <span class="relative">Edit</span>
@@ -53,7 +53,8 @@ import debounce from 'lodash/debounce';
 
 let props = defineProps({
     users: Object,
-    filters: Object
+    filters: Object,
+    can: Object
 });
 console.log(props.filters.search)
 

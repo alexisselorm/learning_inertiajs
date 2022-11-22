@@ -2,6 +2,7 @@
 
 use App\Models\User;
 use Inertia\Inertia;
+use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Auth\LoginController;
 
@@ -43,15 +44,21 @@ Route::middleware(['auth'])->group(function () {
             ->through(fn($user)=>[
                 'id'=>$user->id,
                 'name'=>$user->name,
+                'can'=>[
+                    'edit' => Auth::user()->can('edit',User::class),
+                ],
             ]),
             // Pass this filters prop to the frontend to persist the search term state
-            'filters'=> request() ->only(['search'])
+            'filters'=> request() ->only(['search']),
+            'can' => [
+                'createUser'=>Auth::user()->can('create',User::class)
+            ]
         ]);
     });
 
     Route::get('/users/create', function(){
     return Inertia::render("Users/Create");
-    });
+    })->middleware('can:createUser');
 
     Route::post('/users', function(){
         // Validate the request
