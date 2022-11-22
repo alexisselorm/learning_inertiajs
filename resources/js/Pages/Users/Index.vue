@@ -51,7 +51,7 @@ let props = defineProps({
     users: Object,
     filters: Object
 });
-console.log(props.filters)
+console.log(props.filters.search)
 
 let search = ref(props.filters.search)
 watch(search, value => {
